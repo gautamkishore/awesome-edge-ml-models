@@ -15,6 +15,7 @@ This list prioritizes models with public weights, reproducible deployment paths,
 - [Vision-Language Models](#vision-language-models)
 - [Computer Vision Backbones](#computer-vision-backbones)
 - [Detection, Segmentation, Pose, and Tracking](#detection-segmentation-pose-and-tracking)
+- [OCR and Document Understanding](#ocr-and-document-understanding)
 - [Speech and Audio](#speech-and-audio)
 - [Embeddings and Retrieval](#embeddings-and-retrieval)
 - [TinyML and Microcontroller Models](#tinyml-and-microcontroller-models)
@@ -54,6 +55,17 @@ Non-goals:
 | `tflite` | TensorFlow Lite / LiteRT / MediaPipe-compatible path. |
 | `coreml` | Core ML-compatible path for Apple platforms. |
 | `onnx` | ONNX / ONNX Runtime-compatible path. |
+| `mediapipe` | MediaPipe Tasks / Solutions-compatible model or packaged pipeline. |
+| `tfjs` | TensorFlow.js-compatible model. |
+| `ggml` | GGML / whisper.cpp-style local CPU/GPU format. |
+| `ncnn` | NCNN mobile inference path, common for Android and embedded Linux. |
+| `mnn` | MNN mobile and embedded inference path. |
+| `tensorrt` | TensorRT / TensorRT-LLM deployment path for NVIDIA edge GPUs. |
+| `edgetpu` | Google Coral Edge TPU-compatible model or conversion path. |
+| `openvino` | OpenVINO / Intel edge deployment path. |
+| `rknn` | Rockchip RKNN / RKNPU deployment path. |
+| `mlc` | MLC LLM / WebLLM compiled deployment path. |
+| `bitnet` | Native low-bit / bitnet.cpp-style LLM inference path. |
 
 ## Language Models
 
@@ -68,6 +80,9 @@ Small language models for on-device chat, summarization, rewriting, classificati
 | SmolLM2 | 135M, 360M, 1.7B | Very small local assistants, classification, short-form generation | `phone`, `browser`, `gguf` | [Collection](https://huggingface.co/collections/HuggingFaceTB/smollm2), [135M](https://huggingface.co/HuggingFaceTB/SmolLM2-135M) |
 | Qwen3 small dense models | 0.6B, 1.7B, 4B | Multilingual text generation, reasoning, local assistants | `phone`, `high-end-phone`, `gguf`, `onnx` | [Qwen3 blog](https://qwenlm.github.io/blog/qwen3/), [0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) |
 | Qwen2.5 small instruct | 0.5B, 1.5B | Efficient multilingual chat and agent-style tasks | `phone`, `gguf`, `onnx` | [0.5B Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct), [1.5B Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct) |
+| Phi-4 Mini Instruct | 3.8B | Long-context reasoning, function calling, multilingual local assistants | `high-end-phone`, `laptop`, `gguf` | [Model](https://huggingface.co/microsoft/Phi-4-mini-instruct), [Announcement](https://techcommunity.microsoft.com/blog/educatordeveloperblog/welcome-to-the-new-phi-4-models---microsoft-phi-4-mini--phi-4-multimodal/4386037), [GGUF](https://huggingface.co/unsloth/Phi-4-mini-instruct-GGUF) |
+| BitNet b1.58 2B4T | 2B native 1-bit | Low-memory CPU/GPU local language modeling research | `laptop`, `sbc`, `bitnet` | [Model](https://huggingface.co/microsoft/bitnet-b1.58-2B-4T), [bitnet.cpp](https://github.com/microsoft/BitNet), [Paper](https://arxiv.org/abs/2504.12285) |
+| RWKV small variants | 169M–1.5B+ | Recurrent/attention-free local language modeling experiments with small KV-state footprint | `phone`, `laptop` | [Website](https://www.rwkv.com/), [GitHub](https://github.com/BlinkDL/RWKV-LM), [RWKV-edge paper](https://arxiv.org/abs/2412.10856) |
 | MobileLLM | 125M, 350M, 600M, 1B, 1.5B | Research-grade sub-billion on-device LLMs | `phone`, `laptop` | [GitHub](https://github.com/facebookresearch/MobileLLM), [HF collection](https://huggingface.co/collections/facebook/mobilellm) |
 | MobileLLM-Pro | 1B | Long-context local language modeling research | `phone`, `laptop` | [Model](https://huggingface.co/facebook/MobileLLM-Pro), [Paper](https://arxiv.org/abs/2511.06719) |
 | MobileLLM-R1 | 950M | Small reasoning and coding research | `phone`, `laptop` | [Model](https://huggingface.co/facebook/MobileLLM-R1-950M) |
@@ -87,6 +102,9 @@ Small multimodal models for image captioning, VQA, screen understanding, OCR-lik
 | InternVL small variants | 1B+ | Lightweight multimodal understanding | `high-end-phone`, `laptop` | [InternVL2-1B](https://huggingface.co/OpenGVLab/InternVL2-1B), [InternVL3-1B](https://huggingface.co/OpenGVLab/InternVL3-1B) |
 | FastVLM | multiple | Efficient vision encoder for VLM latency reduction | `phone`, `laptop`, `coreml` | [GitHub](https://github.com/apple/ml-fastvlm) |
 | MobileCLIP | S0, S1, S2, B variants | Efficient image-text retrieval and zero-shot classification | `phone`, `coreml`, `onnx` | [Apple research](https://machinelearning.apple.com/research/mobileclip), [GitHub](https://github.com/apple/ml-mobileclip) |
+| PaliGemma / PaliGemma 2 | 3B, 10B, 28B | Captioning, visual QA, OCR-like tasks, detection/segmentation prompts; 3B variants are the edge-relevant tier | `high-end-phone`, `laptop` | [Docs](https://ai.google.dev/gemma/docs/paligemma), [PaliGemma 2 card](https://ai.google.dev/gemma/docs/paligemma/model-card-2), [3B mix model](https://huggingface.co/google/paligemma2-3b-mix-224) |
+| Florence-2 | 0.23B, 0.77B | Prompt-based captioning, dense region captioning, object detection, grounding, and segmentation | `laptop`, `onnx` | [Base model](https://huggingface.co/microsoft/Florence-2-base), [Large FT model](https://huggingface.co/microsoft/Florence-2-large-ft), [Paper](https://arxiv.org/abs/2311.06242) |
+| Phi-4 Multimodal Instruct | 5.6B | Unified text, image, and audio understanding on strong local hardware | `high-end-phone`, `laptop`, `onnx` | [Model](https://huggingface.co/microsoft/Phi-4-multimodal-instruct), [Announcement](https://techcommunity.microsoft.com/blog/educatordeveloperblog/welcome-to-the-new-phi-4-models---microsoft-phi-4-mini--phi-4-multimodal/4386037), [Intel guide](https://www.intel.com/content/www/us/en/developer/articles/technical/accelerate-microsoft-phi-4-small-language-models.html) |
 
 ## Computer Vision Backbones
 
@@ -100,6 +118,10 @@ Efficient feature extractors for classification, detection, segmentation, tracki
 | EfficientViT | Classification / dense prediction | Hardware-efficient vision transformer family | `phone`, `sbc`, `onnx` | [GitHub](https://github.com/mit-han-lab/efficientvit), [Paper](https://han-cai.github.io/selected_projects/efficientvit_iccv.pdf) |
 | ShuffleNetV2 | Classification backbone | Very small CNN backbone for CPU-bound devices | `phone`, `sbc`, `onnx` | [Paper](https://arxiv.org/abs/1807.11164) |
 | SqueezeNet | Classification backbone | Very small CNN baseline for constrained inference | `phone`, `sbc`, `onnx`, `coreml` | [Paper](https://arxiv.org/abs/1602.07360), [ONNX model zoo](https://github.com/onnx/models) |
+| RepViT | Classification / backbone | CNN redesigned with ViT-style blocks for strong mobile latency/accuracy tradeoffs | `phone`, `onnx` | [GitHub](https://github.com/THU-MIG/RepViT), [Paper](https://arxiv.org/abs/2307.09283) |
+| MobileOne | Classification / backbone | Apple mobile backbone with sub-millisecond iPhone latency variants | `phone`, `coreml`, `onnx` | [Apple research](https://machinelearning.apple.com/research/mobileone), [GitHub](https://github.com/apple/ml-mobileone), [Paper](https://arxiv.org/abs/2206.04040) |
+| EdgeNeXt | Classification / dense prediction | Efficient CNN-transformer hybrid tested on Jetson Nano-class edge hardware | `phone`, `sbc`, `onnx` | [Project](https://mmaaz60.github.io/EdgeNeXt/), [GitHub](https://github.com/mmaaz60/EdgeNeXt), [Paper](https://arxiv.org/abs/2206.10589) |
+| PP-LCNet | Classification backbone | Lightweight CPU-oriented CNN used across PaddlePaddle mobile/edge pipelines | `phone`, `sbc`, `onnx` | [Docs](https://paddleclas-doc.readthedocs.io/zh/latest/models/PP-LCNet_en.html), [Paper](https://arxiv.org/abs/2109.15099) |
 
 ## Detection, Segmentation, Pose, and Tracking
 
@@ -119,6 +141,23 @@ Efficient feature extractors for classification, detection, segmentation, tracki
 | EdgeSAM | Promptable segmentation | SAM-style segmentation optimized for on-device deployment | `phone`, `laptop`, `onnx` | [Paper](https://arxiv.org/abs/2312.06660) |
 | NanoDet | Object detection | Lightweight anchor-free detector for mobile CPU/GPU | `phone`, `sbc`, `ncnn`, `onnx` | [GitHub](https://github.com/RangiLyu/nanodet) |
 | PicoDet | Object detection | Lightweight detector from PaddleDetection | `phone`, `sbc`, `onnx` | [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection) |
+| MoveNet Lightning / Thunder | Pose estimation | Real-time 17-keypoint body pose for phones, browsers, and fitness/motion apps | `phone`, `browser`, `tflite`, `tfjs` | [TensorFlow blog](https://blog.tensorflow.org/2021/08/pose-estimation-and-classification-on-edge-devices-with-MoveNet-and-TensorFlow-Lite.html), [Kaggle model](https://www.kaggle.com/models/google/movenet) |
+| FastSAM | Promptable segmentation | CNN-based Segment Anything alternative with much faster runtime than SAM | `laptop`, `sbc`, `onnx` | [GitHub](https://github.com/CASIA-LMC-Lab/FastSAM), [Paper](https://arxiv.org/abs/2306.12156) |
+| EfficientSAM | Promptable segmentation | Smaller SAM-style segmentation checkpoints with community ONNX export paths | `laptop`, `onnx` | [GitHub](https://github.com/yformer/EfficientSAM), [ONNX fork](https://github.com/labelmeai/efficient-sam) |
+| RepViT-SAM | Promptable segmentation | SAM-style segmentation using RepViT backbones for faster mobile-oriented inference | `phone`, `laptop`, `onnx` | [Project](https://jameslahm.github.io/repvit-sam/), [RepViT](https://github.com/THU-MIG/RepViT) |
+| Depth Anything V2 Small | Monocular depth estimation | Strong single-image depth with small/ONNX/Core ML variants for local perception apps | `phone`, `laptop`, `onnx`, `coreml` | [GitHub](https://github.com/DepthAnything/Depth-Anything-V2), [ONNX model](https://huggingface.co/onnx-community/depth-anything-v2-small), [Core ML model](https://developer.apple.com/machine-learning/models/) |
+| TEED | Edge detection | Tiny 58K-parameter edge detector for low-level vision pre-processing | `phone`, `sbc`, `onnx` | [GitHub](https://github.com/xavysp/TEED), [Paper](https://arxiv.org/abs/2308.06468) |
+
+## OCR and Document Understanding
+
+Lightweight OCR, layout, and document parsing models that are useful when VLMs are too heavy or too hallucination-prone.
+
+| Model / family | Task | Why it is useful on edge | Edge tags | Links |
+|---|---|---|---|---|
+| PP-OCRv5 / PP-OCRv4 mobile | Text detection and recognition | Specialized lightweight OCR pipelines; mobile recognizers are small and optimized for deployment across edge hardware | `phone`, `sbc`, `onnx` | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR), [PP-OCRv4 mobile rec](https://huggingface.co/PaddlePaddle/PP-OCRv4_mobile_rec), [PaddleOCR 3.0 report](https://arxiv.org/abs/2507.05595) |
+| PaddleOCR-VL | Document parsing VLM | Compact document VLM for pages, charts, tables, formulas, and multilingual document understanding | `laptop`, `high-end-phone` | [GitHub](https://github.com/PaddlePaddle/PaddleOCR), [PaddleOCR-VL-1.5 paper](https://arxiv.org/abs/2601.21957) |
+| EasyOCR ONNX variants | OCR | Community ONNX conversions for multilingual OCR experimentation where PaddleOCR is not a fit | `phone`, `sbc`, `onnx` | [EasyOCR](https://github.com/JaidedAI/EasyOCR), [ONNX export discussion](https://github.com/JaidedAI/EasyOCR/issues/746), [Qualcomm model entry](https://aihub.qualcomm.com/compute/models/easyocr) |
+| Surya OCR / layout models | OCR, layout, table recognition | Local document OCR and layout analysis; more laptop-class than phone-class, but useful for private document pipelines | `laptop`, `openvino` | [GitHub](https://github.com/datalab-to/surya), [OpenVINO notebook](https://docs.openvino.ai/2024/notebooks/surya-line-level-text-detection-with-output.html) |
 
 ## Speech and Audio
 
@@ -131,6 +170,12 @@ Efficient feature extractors for classification, detection, segmentation, tracki
 | YAMNet | Audio event classification | Lightweight environmental audio classification | `phone`, `browser`, `tflite`, `tfjs` | [TF Hub](https://tfhub.dev/google/yamnet/1), [TensorFlow.js models](https://www.tensorflow.org/js/models) |
 | RNNoise | Noise suppression | Small recurrent denoising model for real-time audio | `phone`, `sbc` | [GitHub](https://github.com/xiph/rnnoise) |
 | DeepFilterNet | Noise suppression | Neural real-time speech enhancement | `phone`, `laptop`, `sbc` | [GitHub](https://github.com/Rikorose/DeepFilterNet) |
+| Moonshine | 27M, 61M+ ASR | Streaming ASR and voice commands optimized for live, low-latency local speech apps | `phone`, `browser`, `sbc`, `onnx` | [Website](https://usefulsensors.com/), [GitHub](https://github.com/moonshine-ai/moonshine), [Paper](https://arxiv.org/abs/2410.15608) |
+| Flavors of Moonshine | 27M specialized ASR | Tiny monolingual ASR models for underrepresented languages on edge devices | `phone`, `sbc`, `onnx` | [Paper](https://arxiv.org/abs/2509.02523), [ONNX example](https://huggingface.co/onnx-community/moonshine-tiny-ar-ONNX) |
+| Distil-Whisper | distilled Whisper variants | Faster and smaller ASR than original Whisper for local transcription | `phone`, `laptop`, `ggml` | [GitHub](https://github.com/huggingface/distil-whisper), [distil-small.en](https://huggingface.co/distil-whisper/distil-small.en), [Paper](https://arxiv.org/abs/2311.00430) |
+| Piper | TTS | Fast local neural text-to-speech with many small ONNX voice models | `phone`, `sbc`, `onnx` | [GitHub](https://github.com/rhasspy/piper), [Samples](https://rhasspy.github.io/piper-samples/) |
+| Kokoro 82M | TTS | Lightweight open-weight TTS with ONNX/quantized community deployment paths | `phone`, `laptop`, `onnx` | [Model](https://huggingface.co/hexgrad/Kokoro-82M), [ONNX variant](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX) |
+| sherpa-onnx model set | ASR, TTS, VAD, keyword spotting | Practical ONNX runtime and model catalog for offline speech pipelines | `phone`, `sbc`, `onnx` | [GitHub](https://github.com/k2-fsa/sherpa-onnx), [TTS models](https://k2-fsa.github.io/sherpa/onnx/tts/all/) |
 
 ## Embeddings and Retrieval
 
@@ -144,6 +189,12 @@ Compact embedding models for local semantic search, RAG indexes, clustering, rec
 | snowflake-arctic-embed-s | 384-dim | Lightweight English retrieval | `phone`, `laptop`, `onnx` | [Model](https://huggingface.co/Snowflake/snowflake-arctic-embed-s), [FastEmbed support](https://qdrant.github.io/fastembed/examples/Supported_Models/) |
 | Universal Sentence Encoder Lite | 512-dim | Browser/mobile sentence similarity | `browser`, `phone`, `tfjs`, `tflite` | [TF Hub tutorial](https://www.tensorflow.org/hub/tutorials/semantic_similarity_with_tf_hub_universal_encoder_lite), [Kaggle model](https://www.kaggle.com/models/tensorflow/universal-sentence-encoder) |
 | Qwen3 Embedding 0.6B | 0.6B | Multilingual retrieval when a larger local model is acceptable | `high-end-phone`, `laptop` | [Paper](https://arxiv.org/abs/2506.05176), [Qwen HF](https://huggingface.co/Qwen) |
+| intfloat/e5-small-v2 | 384-dim | Compact English dense retrieval and semantic search | `phone`, `laptop`, `onnx` | [Model](https://huggingface.co/intfloat/e5-small-v2), [FastEmbed support](https://qdrant.github.io/fastembed/examples/Supported_Models/) |
+| intfloat/multilingual-e5-small | 384-dim | Cross-lingual retrieval in a small local embedding model | `phone`, `laptop`, `onnx` | [Model](https://huggingface.co/intfloat/multilingual-e5-small), [Paper](https://arxiv.org/abs/2402.05672) |
+| mixedbread-ai/mxbai-embed-xsmall-v1 | small / Matryoshka | Tiny English retrieval model with long-context and binary-quantization-friendly design | `phone`, `laptop`, `onnx` | [Model](https://huggingface.co/mixedbread-ai/mxbai-embed-xsmall-v1), [Blog](https://www.mixedbread.com/blog/mxbai-embed-xsmall-v1) |
+| nomic-embed-text-v1.5 / v1.5-Q | 768-dim | Local long-context retrieval, including quantized FastEmbed variants | `laptop`, `onnx` | [Model](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5), [FastEmbed support](https://qdrant.github.io/fastembed/examples/Supported_Models/), [Paper](https://arxiv.org/abs/2402.01613) |
+| bge-small-zh-v1.5 | 512-dim | Small Chinese semantic retrieval | `phone`, `laptop`, `onnx` | [FastEmbed support](https://qdrant.github.io/fastembed/examples/Supported_Models/), [FlagEmbedding](https://github.com/FlagOpen/FlagEmbedding) |
+| mxbai-edge-colbert-v0 | 17M, 32M | Research-grade late-interaction retrieval for very small local search systems | `phone`, `laptop` | [Paper](https://arxiv.org/abs/2510.14880) |
 
 ## TinyML and Microcontroller Models
 
@@ -156,6 +207,10 @@ Models and model families for extremely constrained devices.
 | MLPerf Tiny reference models | KWS, visual wake words, image classification, anomaly detection | Reproducible benchmark models for ultra-low-power systems | `mcu`, `tflite` | [MLPerf Tiny](https://github.com/mlcommons/tiny), [Paper](https://arxiv.org/abs/2106.07597) |
 | Arm ML Zoo | KWS, image classification, object detection, speech, super-resolution, anomaly detection | INT8 models for Cortex-A, Cortex-M, Mali GPU, and Ethos-U | `mcu`, `sbc`, `npu`, `tflite` | [GitHub](https://github.com/Arm-Examples/ML-zoo), [Docs](https://developer.arm.com/documentation/109267/) |
 | Edge Impulse FOMO | Object detection | Real-time object detection/tracking/counting for constrained devices | `mcu`, `sbc`, `tflite` | [Docs](https://docs.edgeimpulse.com/studio/projects/learning-blocks/blocks/object-detection/fomo), [Tutorial](https://docs.edgeimpulse.com/tutorials/end-to-end/object-detection-centroids) |
+| MCUNet / TinyNAS | Image classification, VWW, KWS | Co-designed neural architectures for microcontroller memory, latency, and energy constraints | `mcu` | [GitHub](https://github.com/mit-han-lab/mcunet), [TinyEngine](https://github.com/mit-han-lab/tinyengine), [Paper](https://arxiv.org/abs/2007.10319) |
+| MicroNets | KWS, visual wake words, anomaly detection | TinyML benchmark models designed for commodity microcontrollers and MLPerf Tiny tasks | `mcu`, `tflite` | [Paper](https://arxiv.org/abs/2010.11267), [Arm ML Zoo](https://github.com/Arm-Examples/ML-zoo) |
+| emlearn models | Classical ML and shallow neural nets | Converts scikit-learn-style models to portable C99 for extremely small embedded systems | `mcu` | [GitHub](https://github.com/emlearn/emlearn), [Docs examples](https://emlearn.readthedocs.io/en/latest/made_with.html) |
+| TI Tiny ML ModelZoo | Time series, anomaly detection, image classification | Ready-to-explore TinyML tasks for TI microcontrollers | `mcu` | [GitHub](https://github.com/TexasInstruments/tinyml-tensorlab) |
 
 ## Model Zoos and Collections
 
@@ -170,6 +225,12 @@ Models and model families for extremely constrained devices.
 | Hugging Face LiteRT community | Android-ready LiteRT variants of selected LLMs | [litert-community](https://huggingface.co/litert-community) |
 | Awesome TFLite | Community collection of TensorFlow Lite models, apps, and tools | [awesome-tflite](https://github.com/iglaweb/awesome-tflite) |
 | Awesome Mobile LLM | Papers and resources for mobile/on-device LLMs | [awesome-mobile-llm](https://github.com/stevelaskaridis/awesome-mobile-llm) |
+| Qualcomm AI Hub Models | Optimized model zoo with downloadable assets and device performance data for Snapdragon/Qualcomm devices | [AI Hub](https://aihub.qualcomm.com/models), [GitHub](https://github.com/qualcomm/ai-hub-models), [HF org](https://huggingface.co/qualcomm) |
+| NVIDIA Jetson AI Lab | Tutorials, model recipes, and benchmarks for running generative AI on Jetson devices | [Jetson AI Lab](https://www.jetson-ai-lab.com/), [Tutorials](https://www.jetson-ai-lab.com/tutorials/) |
+| OpenVINO Open Model Zoo | Intel edge/deployment-ready model examples and optimized demos | [Open Model Zoo](https://github.com/openvinotoolkit/open_model_zoo), [OpenVINO docs](https://docs.openvino.ai/) |
+| RKNN Model Zoo | Rockchip RKNPU deployment examples and converted-model workflows | [RKNN Model Zoo](https://github.com/airockchip/rknn_model_zoo), [RKNN Toolkit2](https://github.com/rockchip-linux/rknn-toolkit2) |
+| Luxonis Model Zoo | OAK/DepthAI-oriented edge vision models and deployment metadata | [Luxonis models](https://models.luxonis.com/) |
+| Kaggle Models | Hosted model cards and downloadable assets including TFLite/TF Hub-style models | [Kaggle Models](https://www.kaggle.com/models) |
 
 ## Runtimes and Deployment Formats
 
@@ -191,6 +252,14 @@ This section is for deploying the models above, not for adding every runtime in 
 | MNN | Mobile and embedded inference | [MNN](https://github.com/alibaba/MNN) |
 | TensorRT / TensorRT-LLM | Jetson and NVIDIA edge GPUs | [TensorRT](https://developer.nvidia.com/tensorrt), [TensorRT-LLM](https://github.com/NVIDIA/TensorRT-LLM) |
 | Edge TPU | Coral accelerators | [Coral models](https://coral.ai/models/) |
+| LiteRT-LM / MediaPipe GenAI | On-device LLM/VLM inference APIs for Android, iOS, web, and Google AI Edge apps | [LiteRT-LM](https://github.com/google-ai-edge/LiteRT-LM), [LLM Inference API](https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference/android) |
+| WebLLM | In-browser LLM inference over WebGPU with OpenAI-compatible local API | [WebLLM](https://github.com/mlc-ai/web-llm) |
+| ONNX Runtime Web | Browser and Node.js ONNX inference through WASM, WebGPU, and WebNN paths | [Docs](https://onnxruntime.ai/docs/get-started/with-javascript/web.html) |
+| OpenVINO | Intel CPU/GPU/NPU edge inference and GenAI optimization | [OpenVINO](https://docs.openvino.ai/) |
+| RKNN Toolkit / RKLLM | Rockchip model conversion and inference for RKNPU and RKLLM stacks | [RKNN Toolkit2](https://github.com/rockchip-linux/rknn-toolkit2), [RKLLM](https://github.com/airockchip/rknn-llm) |
+| sherpa-onnx | Offline speech pipelines across mobile, desktop, browser, and embedded targets | [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) |
+| Qualcomm AI Engine Direct / QNN | Qualcomm NPU acceleration path for LiteRT and ExecuTorch deployments | [LiteRT Qualcomm NPU guide](https://ai.google.dev/edge/litert/android/npu/qualcomm), [ExecuTorch Qualcomm tutorial](https://docs.pytorch.org/executorch/1.1/llm/build-run-llama3-qualcomm-ai-engine-direct-backend.html) |
+| bitnet.cpp | Native 1-bit / ternary LLM inference kernels for CPU/GPU edge experiments | [GitHub](https://github.com/microsoft/BitNet), [Paper](https://arxiv.org/abs/2502.11880) |
 
 ## Benchmarks
 
@@ -204,6 +273,12 @@ Use these to validate that a model is actually edge-friendly.
 | ONNX Runtime profiling | CPU/GPU/NPU operator performance | [ONNX Runtime profiling](https://onnxruntime.ai/docs/performance/tune-performance/profiling-tools.html) |
 | llama.cpp benchmarks | Local LLM prefill/decode throughput | [llama.cpp](https://github.com/ggerganov/llama.cpp) |
 | whisper.cpp benchmarks | Local ASR throughput | [whisper.cpp](https://github.com/ggerganov/whisper.cpp) |
+| MLPerf Mobile | Mobile AI workloads such as classification, detection, segmentation, language understanding, super-resolution, and text-to-image | [MLCommons announcement](https://mlcommons.org/2025/07/mlperfmobile-android/) |
+| MLPerf Client | Local client-system benchmark for NPUs/GPUs/CPUs and LLM workloads | [GitHub](https://github.com/mlcommons/mlperf_client), [MLPerf](https://mlcommons.org/benchmarks/client/) |
+| MLPerf Automotive | Automotive edge perception workloads including 2D/3D detection and segmentation | [Paper](https://arxiv.org/abs/2510.27065), [GitHub](https://github.com/mlcommons/mlperf_automotive) |
+| Qualcomm AI Hub performance data | Per-device latency and deployment validation for Snapdragon/Qualcomm targets | [AI Hub models](https://aihub.qualcomm.com/models) |
+| Jetson AI Lab benchmarks | Edge generative AI throughput and tutorials on Jetson hardware | [Jetson AI Lab](https://www.jetson-ai-lab.com/) |
+| OpenVINO benchmark tools | Latency/throughput profiling for Intel edge hardware | [OpenVINO benchmarking](https://docs.openvino.ai/) |
 
 ## Contributing
 
