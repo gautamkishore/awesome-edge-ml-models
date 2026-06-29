@@ -130,7 +130,7 @@ Byte-level, tokenizer-free model for classifying content into multiple taxonomie
 
 | Model | Size / params | Why it is useful on edge | Edge tags | Links |
 |---|---|---|---|---|
-| **pico-type** | 1.5M params, ~210KB ONNX | Classifies raw bytes into 7 heads (coarse type, code lang, text lang, subtype, file MIME, modality, risk) — no tokenizer, no parsing, <6ms inference on CPU | `phone`, `laptop`, `sbc`, `browser`, `onnx` | [GitHub](https://github.com/eulogik/pico-type), [HF model](https://huggingface.co/eulogik/pico-type), [Paper (Zenodo)](https://doi.org/10.5281/zenodo.20758542) |
+| **pico-type** | 1.5M params, ~8.7MB ONNX per tier (4 tiers: tiny/small/base/pro) | Classifies raw bytes into 7 heads (coarse type, code lang, text lang, subtype, file MIME, modality, risk) — no tokenizer, no parsing, <6ms inference on CPU | `phone`, `laptop`, `sbc`, `browser`, `onnx` | [GitHub](https://github.com/eulogik/pico-type), [HF model](https://huggingface.co/eulogik/pico-type), [Paper (Zenodo)](https://doi.org/10.5281/zenodo.20758542) |
 
 ## Detection, Segmentation, Pose, and Tracking
 
