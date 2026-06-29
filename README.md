@@ -14,6 +14,7 @@ This list prioritizes models with public weights, reproducible deployment paths,
 - [Language Models](#language-models)
 - [Vision-Language Models](#vision-language-models)
 - [Computer Vision Backbones](#computer-vision-backbones)
+- [Content Classification](#content-classification)
 - [Detection, Segmentation, Pose, and Tracking](#detection-segmentation-pose-and-tracking)
 - [OCR and Document Understanding](#ocr-and-document-understanding)
 - [Speech and Audio](#speech-and-audio)
@@ -122,6 +123,14 @@ Efficient feature extractors for classification, detection, segmentation, tracki
 | MobileOne | Classification / backbone | Apple mobile backbone with sub-millisecond iPhone latency variants | `phone`, `coreml`, `onnx` | [Apple research](https://machinelearning.apple.com/research/mobileone), [GitHub](https://github.com/apple/ml-mobileone), [Paper](https://arxiv.org/abs/2206.04040) |
 | EdgeNeXt | Classification / dense prediction | Efficient CNN-transformer hybrid tested on Jetson Nano-class edge hardware | `phone`, `sbc`, `onnx` | [Project](https://mmaaz60.github.io/EdgeNeXt/), [GitHub](https://github.com/mmaaz60/EdgeNeXt), [Paper](https://arxiv.org/abs/2206.10589) |
 | PP-LCNet | Classification backbone | Lightweight CPU-oriented CNN used across PaddlePaddle mobile/edge pipelines | `phone`, `sbc`, `onnx` | [Docs](https://paddleclas-doc.readthedocs.io/zh/latest/models/PP-LCNet_en.html), [Paper](https://arxiv.org/abs/2109.15099) |
+
+## Content Classification
+
+Byte-level, tokenizer-free model for classifying content into multiple taxonomies (content type, code language, text language, file MIME, risk) from raw bytes in a single forward pass.
+
+| Model | Size / params | Why it is useful on edge | Edge tags | Links |
+|---|---|---|---|---|
+| **pico-type** | 1.5M params, ~210KB ONNX | Classifies raw bytes into 7 heads (coarse type, code lang, text lang, subtype, file MIME, modality, risk) — no tokenizer, no parsing, <6ms inference on CPU | `phone`, `laptop`, `sbc`, `browser`, `onnx` | [GitHub](https://github.com/eulogik/pico-type), [HF model](https://huggingface.co/eulogik/pico-type), [Paper (Zenodo)](https://doi.org/10.5281/zenodo.20758542) |
 
 ## Detection, Segmentation, Pose, and Tracking
 
